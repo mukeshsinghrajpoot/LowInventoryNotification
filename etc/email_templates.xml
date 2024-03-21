@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="bluethink_admin_low_inventory_notification_email_configuration_email_template" label="Send Notification" file="send_notification_email.html" type="html" module="Bluethinkinc_LowInventoryNotification" area="frontend"/>
+</config>

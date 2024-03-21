@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <bluethink_admin_low_inventory_notification>
+            <general> 
+                <notify_for_quantity_below>10</notify_for_quantity_below> 
+                <notify_for_quantity_below_label>Notify For Quantity Below</notify_for_quantity_below_label>                               
+            </general>
+            <email_configuration>
+                <notify_email_subject>Low Inventory Notification.</notify_email_subject>
+                <sender>general</sender>
+                <email_template>bluethink_admin_low_inventory_notification_email_configuration_email_template</email_template>
+            </email_configuration>
+        </bluethink_admin_low_inventory_notification>
+    </default>
+</config>

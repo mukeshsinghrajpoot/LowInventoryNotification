@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bluethink" translate="label" sortOrder="10">
+            <label>BlueThink Inc</label>
+        </tab>
+        <section id="bluethink_admin_low_inventory_notification" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Admin Low Inventory Notification Setting</label>
+            <tab>bluethink</tab>
+            <resource>Bluethinkinc_LowInventoryNotification::bluethink_admin_low_inventory_notification</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select "yes" to enable module.</comment>
+                </field>
+                <field id="notify_for_quantity_below" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Notify On Below Quantity</label>
+                    <validate>required-entry</validate>
+                    <comment>Enter Qty to define low Inventory product.</comment>
+                </field>
+            </group>
+            <group id="notification_first" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Notification Cron Configuration</label>
+                <field id="frequency" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Frequency</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Bluethinkinc\LowInventoryNotification\Model\Config\CronConfig</backend_model>
+                </field>
+                <field id="time" translate="label comment" sortOrder="2" type="time" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Start Time</label>
+                </field>
+            </group>
+            <group id="email_configuration" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Send Email To Store Owner Configuration</label>
+                <field id="send_to_email" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <validate>required-entry</validate>
+                    <label>Send Email To</label>
+                    <comment>For the multiple use comma between emails.For example:abc@exmple.com,xyz@example.com</comment>
+                </field>
+                <field id="notify_email_subject" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Email Subject</label>
+                    <comment>Enter Email Subject.</comment>
+                </field>
+                <field id="sender" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Select Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="email_template" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Select Email Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="test_notification" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Manually Send Email Low Inventory Notification</label>
+                <field id="send_notification" translate="label" type="button" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Low Inventory Notification</label>
+                    <frontend_model>Bluethinkinc\LowInventoryNotification\Block\System\Config\SendNotificationButton</frontend_model>
+                    <comment>Manually send Low Inventory Notification 1. You will get email with low Inventory items.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

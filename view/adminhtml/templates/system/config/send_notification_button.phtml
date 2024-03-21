@@ -1,0 +1,48 @@
+<?php
+/* @var \Bluethinkinc\LowInventoryNotification\Block\System\config\SendNotificationButton $block */
+?>
+<script>
+    require([
+        'jquery',
+        'prototype'
+    ], function ($) {
+        $('#send_notification').click(function () {
+            var params = {};
+            new Ajax.Request('<?=/* @noEscape */$block->getAjaxUrl() ?>', {
+                parameters: params,
+                loaderArea: true,
+                asynchronous: true,
+                onCreate: function () {
+                    $('.sync_postpaid_plans_message').parent().removeClass('message message-success');
+                    $('.sync_postpaid_plans_message').parent().removeClass('message message-error');
+                    $('.sync_postpaid_plans_message').text('');
+                },
+                onSuccess: function (transport) {
+                    var resultText = '';
+                    if (transport.status > 200) {
+                        resultText = transport.statusText;
+                        $('.sync_postpaid_plans_message').parent().addClass('message message-success');
+                        $('.sync_postpaid_plans_message').text(resultText);
+                    } else {
+                        var response = JSON.parse(transport.responseText);
+                        if(response.error=='true')
+                        { 
+                           $('.sync_postpaid_plans_message').parent().addClass('message message-error');
+                           $('.sync_postpaid_plans_message').text(response.response);
+                        }else
+                        {
+                           $('.sync_postpaid_plans_message').parent().addClass('message message-success');
+                           $('.sync_postpaid_plans_message').text(response.response);
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
+<?= $block->getButtonHtml(); ?>
+<div class="messages">
+    <div class="">
+        <span class="sync_postpaid_plans_message"></span>
+    </div>
+</div>
